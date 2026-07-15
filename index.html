@@ -264,8 +264,9 @@
                 }
             }
 
+            const pixelRatio = Math.min(window.devicePixelRatio, 2);
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
+            renderer.setPixelRatio(pixelRatio); // Cap pixel ratio for performance
             container.appendChild(renderer.domElement);
 
             // Calculate aspect ratio
@@ -273,7 +274,7 @@
 
             // --- LAYER 1: The Particle System (Background Stars) ---
             // Rendered to a target so it can be gravitationally lensed by the shader
-            const particleTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+            const particleTarget = new THREE.WebGLRenderTarget(window.innerWidth * pixelRatio, window.innerHeight * pixelRatio, {
                 minFilter: THREE.LinearFilter,
                 magFilter: THREE.LinearFilter,
                 format: THREE.RGBAFormat
@@ -462,10 +463,11 @@
                 fragmentShader,
                 uniforms: {
                     u_time: { value: 0 },
-                    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                    u_resolution: { value: new THREE.Vector2(window.innerWidth * pixelRatio, window.innerHeight * pixelRatio) },
                     u_mouse: { value: new THREE.Vector2(0, 0) },
                     u_particles: { value: particleTarget.texture },
-                    u_zoom: { value: 0.0 }                },
+                    u_zoom: { value: 0.0 }
+                },
                 depthWrite: false,
                 depthTest: false
             });
@@ -509,6 +511,7 @@
             window.addEventListener('resize', () => {
                 const width = Math.max(1, window.innerWidth);
                 const height = Math.max(1, window.innerHeight);
+                const currentPixelRatio = Math.min(window.devicePixelRatio, 2);
 
                 renderer.setSize(width, height);
                 aspect = width / height;
@@ -517,8 +520,8 @@
                 particleCamera.right = 4 * aspect;
                 particleCamera.updateProjectionMatrix();
                 
-                particleTarget.setSize(width, height);
-                mainMaterial.uniforms.u_resolution.value.set(width, height);
+                particleTarget.setSize(width * currentPixelRatio, height * currentPixelRatio);
+                mainMaterial.uniforms.u_resolution.value.set(width * currentPixelRatio, height * currentPixelRatio);
                 
                 if (homeSequenceActive) {
                     resizeHomeCanvas();
