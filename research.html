@@ -81,7 +81,7 @@
 
     <!-- Navbar -->
     <nav class="relative z-10 w-full px-10 py-8 flex justify-between items-center border-b border-[#E5D4B5]/10 bg-[#030914]/80 backdrop-blur-md">
-        <a href="index.html" class="text-2xl font-thin tracking-[0.4em] hover:text-white transition-colors">AADI.</a>
+        <a href="index.html" class="text-2xl font-thin tracking-[0.4em] px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">AADI.</a>
         
         <div class="flex items-center gap-6 md:gap-10 text-xs tracking-[0.2em] uppercase font-light">
             <a href="research.html" class="px-4 py-2 border border-[#E5D4B5]/30 rounded-sm text-white transition-all duration-300">Research</a>
@@ -94,10 +94,11 @@
                     More
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div class="dropdown-menu absolute top-full right-0 mt-2 w-48 bg-[#050e1f] border border-[#E5D4B5]/10 rounded-sm shadow-2xl flex flex-col py-2">
-                    <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Publications</a>
-                    <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Resume</a>
-                    <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Contact</a>
+                <div class="dropdown-menu absolute top-full right-0 mt-2 w-54 bg-[#050e1f] border border-[#E5D4B5]/10 rounded-sm shadow-2xl flex flex-col py-2">
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Astrophotography</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Artwork</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Resume</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Contact</a>
                 </div>
             </div>
         </div>
@@ -113,56 +114,77 @@
 
         <div class="flex flex-col gap-8">
             <!-- Research Item 1 -->
-            <a href="#" class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
+            <div class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Accretion Dynamics in Supermassive Black Holes</h2>
-                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Active Study</span>
+                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Astrophysics | Analysis of X-Ray Binary Systems</h2>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Active Study 01/2026</span>
                 </div>
+                <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base mb-6">
+                    Stars are rarely born alone, often existing in pairs. When one of these stars reaches the end of its life, it can collapse into a compact object (e.g., black holes (BH) or neutron stars). This creates a Black Hole X-ray Binary (BHXRB), a system where the BH feeds off the mass of the donor star. As material starts spinning around the BH its gets hotter and faster, creating an accretion disk which emits X-rays, while some of this material gets launched into powerful jets visible in the radio wavelength regime. How these jets are exactly formed is not yet known. 
+                </p>  
                 <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
-                    Investigating the behavior of plasma flow and magnetic field structures near the event horizon. Using computational models to simulate Doppler beaming effects and relativistic phenomena within the innermost stable circular orbit (ISCO).
-                </p>
-                <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
-                    <span>#Computational_Modeling</span>
-                    <span>#Relativity</span>
-                </div>
-            </a>
-
-            <!-- Research Item 2 -->
-            <a href="#" class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Analysis of X-Ray Binary Systems</h2>
-                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Completed 2025</span>
-                </div>
-                <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
-                    An observational data analysis project focusing on stellar-mass black holes devouring companion stars. Correlating X-ray spectral state changes with radio jet ejections to better understand the disk-jet connection.
+                    This project investigates specific BHXRBs with data from the Atacama Large Millimeter Array (ALMA) radio telescope. I wrote a script that automates the data retrieval and processing of calibrated datasets to plot target visibilities to identify emission lines. By using imaging techniques to map these emission lines from the environment around the BH, where the jets slam into the interstellar medium (ISM), we are able to deconstruct how jets are formed and how powerful they are.
                 </p>
                 <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
                     <span>#Data_Analysis</span>
-                    <span>#Spectroscopy</span>
+                    <span>#Python</span>
+                    <span>#Radio_Astronomy</span>
                 </div>
-            </a>
+            </div>
 
-            <!-- Research Item 3 -->
-            <a href="#" class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
+            <!-- Research Item 2 -->
+            <div class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Real-Time Gravitational Lensing Engine</h2>
-                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Development</span>
+                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Computer Vision | Image + Video Processing of Lab Mice</h2>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Completed 01/2026 - 05/2026</span>
                 </div>
                 <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
-                    Developing a highly optimized WebGL raymarching shader capable of bending light paths based on the Schwarzschild metric in real-time. Created for educational visualization of Einstein rings and photon spheres.
+                    Developed a Python-based computer vision pipeline for image processing using YOLO and OpenCV to automate behavioral tracking and spatial analysis of lab mice in real-time video. Engineered custom polygon zone mapping and ID logic across 1,000+ frames, optimizing performance via Metal Performance Shaders (MPS) acceleration. Streamlined high- precision dataset development by building an interactive automation tool for custom video selection and frame-by-frame progression. Programmed the system to simultaneously export standardized ground-truth labels in COCO JSON, YOLO (.txt), and Pascal VOC (.xml) formats, ensuring readiness and data integrity for interdisciplinary neuroscience research.
                 </p>
                 <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
-                    <span>#GLSL</span>
-                    <span>#Three.js</span>
-                    <span>#Physics_Engine</span>
+                    <span>#Computer_Vision</span>
+                    <span>#Python</span>
+                    <span>#OpenCV</span>
                 </div>
-            </a>
+            </div>
+
+            <!-- Research Item 3 -->
+            <div class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Theoretical Physics | Cosmology</h2>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Completed 05/2023 - 06/2025</span>
+                </div>
+                <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
+                    Participated with the <em>Theoretical Physics Group</em> seminars on quantum mechanics and cosmology. I conducted directed independent studies on stellar evolution and collapse mechanisms and black hole dynamics, followed by an in-depth analysis and literature reviews of the geometric formalism of Special Relativity (Minkowski metrics) and the classic experimental verifications of General Relativity. Later expanding to a foundational study of quantum gravity candidates. I also assisted with analysis with how the Generalized Uncertainty Principle induces observable dips in ultrahigh energy neutrino spectra and reviewing for evidence of sterile neutrino signatures and analyzing how matter-enhanced oscillations (MSW effect) influence neutrino survival probabilities in dense environments.
+                </p>
+                <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
+                    <span>#Theoretical_Physics</span>
+                    <span>#Cosmology</span>
+                    <span>#General_Relativity</span>
+                </div>
+            </div>
+
+            <!-- Research Item 4 -->
+            <div class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Quantum Computing | Simulating Circuits</h2>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Completed 05/2023 - 06/2024</span>
+                </div>
+                <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
+                    Utilizing the standard Nielsen and Chuang text, I conducted a rigorous study of quantum information fundamentals, manually deriving matrix representations for single and multi-qubit gates. I successfully implemented and simulated key algorithms including the Deutsch-Jozsa, Shor’s, and HHL using Python’s Qiskit library and IBM’s cloud quantum processors. My work concluded in a comprehensive set of textbook solutions and functional circuits demonstrating quantum teleportation and arithmetic operations.
+                </p>
+                <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
+                    <span>#Quantum_Computing</span>
+                    <span>#Qiskit</span>
+                    <span>#Python</span>
+                </div>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="relative z-10 p-6 text-center text-[10px] tracking-widest opacity-40 uppercase font-light mt-auto">
-        © 2026 Aadi. All Systems Nominal.
+        © 2026 Aadi. All Rights Reserved.
     </footer>
 
     <!-- Custom Cursor -->
