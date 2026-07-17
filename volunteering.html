@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteering | Aadi's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #030914;
+            color: #E5D4B5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+            cursor: none !important;
+        }
+        
+        body * {
+            cursor: none !important;
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-group:hover .dropdown-menu {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .cursor-dot, .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #E5D4B5;
+            box-shadow: 0 0 10px rgba(229, 212, 181, 0.8);
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(229, 212, 181, 0.4);
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cursor-ring.magnetic-hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(229, 212, 181, 0.1);
+            border-color: rgba(229, 212, 181, 0.8);
+        }
+
+        .cursor-ring.gravity-active {
+            width: 24px;
+            height: 24px;
+            background-color: rgba(229, 212, 181, 0.3);
+            border-color: rgba(229, 212, 181, 1);
+            box-shadow: 0 0 20px rgba(229, 212, 181, 0.6);
+        }
+
+        /* 3D Logo Tilt Styles */
+        .tilt-logo-wrapper {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .tilt-shine {
+            background: radial-gradient(circle at 50% 50%, rgba(229, 212, 181, 0) 0%, transparent 70%);
+            mix-blend-mode: screen;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <canvas id="bg-particles" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+
+    <nav class="relative z-10 w-full px-10 py-8 flex justify-between items-center border-b border-[#E5D4B5]/10 bg-[#030914]/80 backdrop-blur-md">
+        <a href="index.html" class="text-2xl font-thin tracking-[0.4em] px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">AADI.</a>
+        
+        <div class="flex items-center gap-6 md:gap-10 text-xs tracking-[0.2em] uppercase font-light">
+                <a href="research.html" class="px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">Research</a>
+                <a href="leadership.html" class="px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">Leadership</a>
+                <a href="volunteering.html" class="px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">Volunteering</a>
+                <a href="about.html" class="px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300">About Me</a>
+            
+            <!-- Dropdown -->
+            <div class="relative dropdown-group">
+                <button class="px-4 py-2 border border-transparent rounded-sm hover:border-[#E5D4B5]/30 hover:text-white transition-all duration-300 flex items-center gap-2 uppercase">
+                    More
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="dropdown-menu absolute top-full right-0 mt-2 w-54 bg-[#050e1f] border border-[#E5D4B5]/10 rounded-sm shadow-2xl flex flex-col py-2">
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Astrophotography</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Artwork</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Resume</a>
+                        <a href="#" class="px-6 py-3 hover:bg-[#E5D4B5]/10 transition-colors text-right">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 flex-grow flex flex-col px-6 py-20 max-w-6xl mx-auto w-full">
+        <div class="text-center mb-16">
+            <span class="text-xs tracking-[0.5em] uppercase opacity-60 mb-4 block">Professional & Community</span>
+            <h1 class="text-5xl font-thin tracking-wider mb-6 drop-shadow-lg">Volunteering</h1>
+            <div class="w-16 h-[1px] bg-[#E5D4B5]/40 mx-auto"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="p-6 border border-[#E5D4B5]/10 bg-[#050e1f]/30 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-lg font-light tracking-wide group-hover:text-white transition-colors pr-4">Volunteer Educator</h2>
+                        <a href="https://letstalkscience.ca/" target="_blank" class="tilt-logo-wrapper relative w-16 h-16 transition-transform duration-300 flex items-center justify-center cursor-none group/logo shrink-0">
+                            <img src="images/letstalkscience.jpg" onerror="this.src='https://placehold.co/50x50/transparent/E5D4B5?text=LTS'" alt="LTS Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 block mb-4">Let's Talk Science | 2024 - Present</span>
+                    <p class="opacity-70 font-light text-sm leading-relaxed">
+                        Facilitated STEM outreach initiatives across Southern Alberta, bridging the gap between university research and secondary education. Directed hands-on workshops on aerodynamics and translated complex physics into accessible modules.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 border border-[#E5D4B5]/10 bg-[#050e1f]/30 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-lg font-light tracking-wide group-hover:text-white transition-colors pr-4">Astronomy Lab Coordinator</h2>
+                        <a href="#" target="_blank" class="tilt-logo-wrapper relative w-16 h-16 transition-transform duration-300 flex items-center justify-center cursor-none group/logo shrink-0">
+                            <img src="images/LAS.png" onerror="this.src='https://placehold.co/50x50/transparent/E5D4B5?text=LAS'" alt="LAS Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 block mb-4">Uleth & Lethbridge Astro Society | 2026</span>
+                    <p class="opacity-70 font-light text-sm leading-relaxed">
+                        Facilitated logistics and operations for an undergraduate lab session of over 80 students. Managed tracking systems to prevent duplicate entries and optimized student workflow across multiple observation stations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 border border-[#E5D4B5]/10 bg-[#050e1f]/30 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-lg font-light tracking-wide group-hover:text-white transition-colors pr-4">Outreach Representative</h2>
+                        <a href="#" target="_blank" class="tilt-logo-wrapper relative w-16 h-16 transition-transform duration-300 flex items-center justify-center cursor-none group/logo shrink-0">
+                            <img src="images/ulethlogo.png" onerror="this.src='https://placehold.co/50x50/transparent/E5D4B5?text=PHY'" alt="Physics Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 block mb-4">Dept. of Physics & Astronomy | 2026</span>
+                    <p class="opacity-70 font-light text-sm leading-relaxed">
+                        Acted as a key departmental representative at public engagement events. Facilitated interactive demonstrations to increase public interest in higher education and physical sciences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 border border-[#E5D4B5]/10 bg-[#050e1f]/30 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-lg font-light tracking-wide group-hover:text-white transition-colors pr-4">Uleth Ambassador</h2>
+                        <a href="#" target="_blank" class="tilt-logo-wrapper relative w-16 h-16 transition-transform duration-300 flex items-center justify-center cursor-none group/logo shrink-0">
+                            <img src="images/ulethlogo.png" onerror="this.src='https://placehold.co/50x50/transparent/E5D4B5?text=NSO'" alt="NSO Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
+                    <span class="text-[10px] tracking-widest uppercase opacity-50 block mb-4">New Student Orientation | 2024</span>
+                    <p class="opacity-70 font-light text-sm leading-relaxed">
+                        Facilitated the smooth execution of a large-scale orientation event for 1,000+ students by managing crowd flow, event setup, and connecting new students with campus resources.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 border border-[#E5D4B5]/10 bg-[#050e1f]/30 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group relative md:col-span-2 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h2 class="text-lg font-light tracking-wide group-hover:text-white transition-colors">Unit Support Volunteer</h2>
+                            <span class="text-[10px] tracking-widest uppercase opacity-50 block mt-1">Alberta Health Services | 2019 - 2023</span>
+                        </div>
+                        <a href="https://www.albertahealthservices.ca/" target="_blank" class="tilt-logo-wrapper relative w-16 h-16 transition-transform duration-300 flex items-center justify-center cursor-none group/logo shrink-0">
+                            <img src="images/AHS.png" onerror="this.src='https://placehold.co/50x50/transparent/E5D4B5?text=AHS'" alt="AHS Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
+                    <p class="opacity-70 font-light text-sm leading-relaxed max-w-4xl mt-4">
+                        Delivered versatile unit support within Chinook Regional Hospital, adapting quickly to the varying needs of medical teams, patients, and visitors. Facilitated hospital workflow by assisting with non-clinical tasks, patient transport, and communication to reduce strain on nursing staff.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="relative z-10 p-6 text-center text-[10px] tracking-widest opacity-40 uppercase font-light mt-auto">
+        © 2026 Aadi. All Rights Reserved.
+    </footer>
+
+    <!-- Schrodinger's Cat Box Easter Egg -->
+    <button id="cat-box" class="fixed bottom-6 right-6 text-2xl opacity-50 hover:opacity-100 transition-opacity z-50 group border-none bg-transparent flex items-center justify-center cursor-none">
+        <div class="relative">
+            <span id="cat-content" class="absolute -top-10 left-1/2 transform -translate-x-1/2 text-4xl opacity-0 transition-all duration-500 pointer-events-none">🐈</span>
+            <span class="box-icon filter drop-shadow-[0_0_8px_rgba(229,212,181,0.5)]">📦</span>
+        </div>
+        <div class="absolute right-12 top-2 w-48 text-[9px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity text-right text-[#E5D4B5]">
+            Collapse Wavefunction
+        </div>
+    </button>
+
+    <div id="cursor-dot" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring"></div>
+
+    <script>
+        window.onload = function() {
+            // Setup Canvas Particles
+            const canvas = document.getElementById('bg-particles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Initialize Particles
+            for(let i = 0; i < 150; i++) {
+                let isConstellation = Math.random() > 0.5;
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    baseVx: isConstellation ? (Math.random() - 0.5) * 0.05 : (Math.random() - 0.5) * 0.4,
+                    baseVy: isConstellation ? (Math.random() - 0.5) * 0.05 : (Math.random() - 0.5) * 0.4,
+                    vx: 0,
+                    vy: 0,
+                    radius: isConstellation ? (Math.random() * 1.0 + 1.0) : (Math.random() * 1.5 + 0.5),
+                    isConstellation: isConstellation
+                });
+            }
+
+            // Setup Cursor Logic
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorRing = document.getElementById('cursor-ring');
+            let mousePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            let dotPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            let ringPos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+            
+            let hoverTargets = document.querySelectorAll('a, button');
+            let activeHoverTarget = null;
+            let isMouseDown = false;
+
+            window.addEventListener('pointermove', (e) => {
+                mousePos.x = e.clientX;
+                mousePos.y = e.clientY;
+            });
+
+            window.addEventListener('pointerdown', () => {
+                isMouseDown = true;
+                if (!activeHoverTarget) cursorRing.classList.add('gravity-active');
+            });
+
+            window.addEventListener('pointerup', () => {
+                isMouseDown = false;
+                cursorRing.classList.remove('gravity-active');
+            });
+            
+            window.addEventListener('pointercancel', () => {
+                isMouseDown = false;
+                cursorRing.classList.remove('gravity-active');
+            });
+
+            // 3D Tilt Logic for Logos
+            const tiltWrappers = document.querySelectorAll('.tilt-logo-wrapper');
+            tiltWrappers.forEach(wrapper => {
+                const img = wrapper.querySelector('img');
+                const shine = wrapper.querySelector('.tilt-shine');
+                
+                // Initialize the PNG mask so the shine perfectly matches the logo shape
+                if (shine && img) {
+                    shine.style.webkitMaskImage = `url('${img.src}')`;
+                    shine.style.webkitMaskSize = 'contain';
+                    shine.style.webkitMaskRepeat = 'no-repeat';
+                    shine.style.webkitMaskPosition = 'center';
+                }
+
+                wrapper.addEventListener('mousemove', e => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left; 
+                    const y = e.clientY - rect.top;  
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Increased rotation multiplier (from 20 to 35) for a more dramatic tilt
+                    const rotateX = ((y - centerY) / centerY) * -35; 
+                    const rotateY = ((x - centerX) / centerX) * 35;
+                    
+                    // Lowered perspective (from 500px to 400px) creates deeper 3D pop
+                    wrapper.style.transform = `perspective(400px) scale(1.1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    
+                    // Dynamic Inverse Drop-Shadow (Moves opposite to the tilt)
+                    if (img) {
+                        const shadowX = ((x - centerX) / centerX) * -12;
+                        const shadowY = ((y - centerY) / centerY) * -12;
+                        img.style.filter = `drop-shadow(${shadowX}px ${shadowY}px 12px rgba(229,212,181,0.35))`;
+                    }
+
+                    // Dynamic Shine Calculation (Slightly brighter, but constrained by the mask)
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(229, 212, 181, 0.7) 0%, transparent 60%)`;
+                    }
+                });
+                
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.style.transform = `perspective(400px) scale(1) rotateX(0deg) rotateY(0deg)`;
+                    
+                    // Reset shadow
+                    if (img) img.style.filter = `drop-shadow(0 0 15px rgba(229,212,181,0.15))`;
+                    
+                    // Reset shine
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle at 50% 50%, rgba(229, 212, 181, 0) 0%, transparent 70%)`;
+                    }
+                });
+            });
+
+            // Schrodinger's Cat Logic
+            const catBox = document.getElementById('cat-box');
+            const catContent = document.getElementById('cat-content');
+            let wavefunctionCollapsed = false;
+
+            catBox.addEventListener('click', () => {
+                if(!wavefunctionCollapsed) {
+                    wavefunctionCollapsed = true;
+                    // Quantum physics joke: 50% chance the cat is alive or dead
+                    const isAlive = Math.random() > 0.5;
+                    catContent.innerText = isAlive ? '🐈' : '👻';
+                    
+                    catContent.style.opacity = '1';
+                    catContent.style.transform = 'translate(-50%, -15px)';
+                    
+                    // Reset the box after 3 seconds
+                    setTimeout(() => {
+                        wavefunctionCollapsed = false;
+                        catContent.style.opacity = '0';
+                        catContent.style.transform = 'translate(-50%, 0)';
+                    }, 3000); 
+                }
+            });
+
+            // Magnetic hover effect specifically for clickable elements
+            hoverTargets.forEach(target => {
+                target.addEventListener('mouseenter', () => {
+                    activeHoverTarget = target;
+                    cursorRing.classList.add('magnetic-hover');
+                });
+                target.addEventListener('mouseleave', () => {
+                    activeHoverTarget = null;
+                    cursorRing.classList.remove('magnetic-hover');
+                });
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Update Cursor Positions (Lerping)
+                let targetX = mousePos.x;
+                let targetY = mousePos.y;
+                
+                // Only snap to center if it's NOT a tilt logo
+                if (activeHoverTarget && !activeHoverTarget.classList.contains('tilt-logo-wrapper')) {
+                    const rect = activeHoverTarget.getBoundingClientRect();
+                    targetX = rect.left + rect.width / 2;
+                    targetY = rect.top + rect.height / 2;
+                }
+                
+                dotPos.x += (targetX - dotPos.x) * 0.3;
+                dotPos.y += (targetY - dotPos.y) * 0.3;
+                ringPos.x += (dotPos.x - ringPos.x) * 0.15;
+                ringPos.y += (dotPos.y - ringPos.y) * 0.15;
+                
+                cursorDot.style.transform = `translate3d(${dotPos.x}px, ${dotPos.y}px, 0) translate(-50%, -50%)`;
+                cursorRing.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
+                
+                // Draw Particles and Apply Physics
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(229, 212, 181, 0.5)';
+                
+                for (let i = 0; i < particles.length; i++) {
+                    let p = particles[i];
+                    let dx = p.x - dotPos.x;
+                    let dy = p.y - dotPos.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (isMouseDown && !activeHoverTarget) {
+                        let attractRadius = 500;
+                        if (dist < attractRadius && dist > 5) {
+                            let force = (attractRadius - dist) / attractRadius;
+                            p.vx -= (dx / dist) * force * 1.5;
+                            p.vy -= (dy / dist) * force * 1.5;
+                            p.vx += (-dy / dist) * force * 3.5;
+                            p.vy += (dx / dist) * force * 3.5;
+                            p.vx *= 0.88;
+                            p.vy *= 0.88;
+                        }
+                    } else {
+                        let repelRadius = 160;
+                        if (dist < repelRadius) {
+                            let force = (repelRadius - dist) / repelRadius;
+                            p.vx += (dx / dist) * force * 0.5;
+                            p.vy += (dy / dist) * force * 0.5;
+                        }
+                        p.vx += (p.baseVx - p.vx) * 0.05;
+                        p.vy += (p.baseVy - p.vy) * 0.05;
+                    }
+                    
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    // Wrap around screen
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Draw Constellation Lines
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < particles.length; i++) {
+                    if (!particles[i].isConstellation) continue;
+                    for (let j = i + 1; j < particles.length; j++) {
+                        if (!particles[j].isConstellation) continue;
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        
+                        if (dist < 120) {
+                            let opacity = 1 - (dist / 120);
+                            ctx.strokeStyle = `rgba(229, 212, 181, ${opacity * 0.4})`; 
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            animate();
+        };
+    </script>
+</body>
+</html>
