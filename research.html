@@ -116,21 +116,31 @@
 
         <div class="flex flex-col gap-8">
             <!-- Research Item 1 -->
+
             <div class="block p-8 border border-[#E5D4B5]/10 bg-[#050e1f]/50 hover:bg-[#E5D4B5]/5 hover:border-[#E5D4B5]/30 transition-all duration-500 rounded-sm group">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-                    <h2 class="text-xl md:text-2xl font-light tracking-wide group-hover:text-white transition-colors">Astrophysics | Analysis of X-Ray Binary Systems</h2>
-                    <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">Active Study 01/2026</span>
-                </div>
+                <div class="flex flex-col md:flex-row justify-between gap-6">
+                    <div class="flex-1">
+                        <h2 class="text-xl font-light tracking-wide group-hover:text-white transition-colors mb-4">Astrophysics | Analysis of X-Ray Binary Systems </h2>
                 <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base mb-6">
                     Stars are rarely born alone, often existing in pairs. When one of these stars reaches the end of its life, it can collapse into a compact object (e.g., black holes (BH) or neutron stars). This creates a Black Hole X-ray Binary (BHXRB), a system where the BH feeds off the mass of the donor star. As material starts spinning around the BH its gets hotter and faster, creating an accretion disk which emits X-rays, while some of this material gets launched into powerful jets visible in the radio wavelength regime. How these jets are exactly formed is not yet known. 
                 </p>  
                 <p class="opacity-70 font-light leading-relaxed max-w-4xl text-sm md:text-base">
                     This project investigates specific BHXRBs with data from the Atacama Large Millimeter Array (ALMA) radio telescope. I wrote a script that automates the data retrieval and processing of calibrated datasets to plot target visibilities to identify emission lines. By using imaging techniques to map these emission lines from the environment around the BH, where the jets slam into the interstellar medium (ISM), we are able to deconstruct how jets are formed and how powerful they are.
                 </p>
+
                 <div class="mt-6 flex gap-4 text-[10px] tracking-widest uppercase opacity-60">
                     <span>#Data_Analysis</span>
                     <span>#Python</span>
                     <span>#Radio_Astronomy</span>
+                </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 shrink-0">
+                        <span class="text-[10px] tracking-widest uppercase opacity-50 px-3 py-1 border border-[#E5D4B5]/20 rounded-full">01/2026 - Present</span>
+                        <a href="https://tetarenk.github.io/group.html" target="_blank" class="tilt-logo-wrapper relative w-32 h-32 transition-transform duration-300 flex items-center justify-center cursor-none group/logo mt-2">
+                            <img src="images/LUX.png" onerror="this.src='https://placehold.co/100x100/transparent/E5D4B5?text=LUX'" alt="Club Logo" class="w-full h-full object-contain opacity-80 group-hover/logo:opacity-100 transition-opacity pointer-events-none drop-shadow-[0_0_15px_rgba(229,212,181,0.15)]">
+                            <div class="tilt-shine absolute inset-0 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -189,7 +199,17 @@
         © 2026 Aadi. All Rights Reserved.
     </footer>
 
-    <!-- Custom Cursor -->
+ <!-- Schrodinger's Cat Box Easter Egg -->
+    <button id="cat-box" class="fixed bottom-6 right-6 text-2xl opacity-50 hover:opacity-100 transition-opacity z-50 group border-none bg-transparent flex items-center justify-center cursor-none">
+        <div class="relative">
+            <span id="cat-content" class="absolute -top-10 left-1/2 transform -translate-x-1/2 text-4xl opacity-0 transition-all duration-500 pointer-events-none">🐈</span>
+            <span class="box-icon filter drop-shadow-[0_0_8px_rgba(229,212,181,0.5)]">📦</span>
+        </div>
+        <div class="absolute right-12 top-2 w-48 text-[9px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity text-right text-[#E5D4B5]">
+            Collapse Wavefunction
+        </div>
+    </button>
+
     <div id="cursor-dot" class="cursor-dot"></div>
     <div id="cursor-ring" class="cursor-ring"></div>
 
@@ -253,6 +273,86 @@
                 cursorRing.classList.remove('gravity-active');
             });
 
+            // 3D Tilt Logic for Logos
+            const tiltWrappers = document.querySelectorAll('.tilt-logo-wrapper');
+            tiltWrappers.forEach(wrapper => {
+                const img = wrapper.querySelector('img');
+                const shine = wrapper.querySelector('.tilt-shine');
+                
+                // Initialize the PNG mask so the shine perfectly matches the logo shape
+                if (shine && img) {
+                    shine.style.webkitMaskImage = `url('${img.src}')`;
+                    shine.style.webkitMaskSize = 'contain';
+                    shine.style.webkitMaskRepeat = 'no-repeat';
+                    shine.style.webkitMaskPosition = 'center';
+                }
+
+                wrapper.addEventListener('mousemove', e => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left; 
+                    const y = e.clientY - rect.top;  
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Increased rotation multiplier (from 20 to 35) for a more dramatic tilt
+                    const rotateX = ((y - centerY) / centerY) * -35; 
+                    const rotateY = ((x - centerX) / centerX) * 35;
+                    
+                    // Lowered perspective (from 500px to 400px) creates deeper 3D pop
+                    wrapper.style.transform = `perspective(400px) scale(1.1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    
+                    // Dynamic Inverse Drop-Shadow (Moves opposite to the tilt)
+                    if (img) {
+                        const shadowX = ((x - centerX) / centerX) * -12;
+                        const shadowY = ((y - centerY) / centerY) * -12;
+                        img.style.filter = `drop-shadow(${shadowX}px ${shadowY}px 12px rgba(229,212,181,0.35))`;
+                    }
+
+                    // Dynamic Shine Calculation (Slightly brighter, but constrained by the mask)
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(229, 212, 181, 0.7) 0%, transparent 60%)`;
+                    }
+                });
+                
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.style.transform = `perspective(400px) scale(1) rotateX(0deg) rotateY(0deg)`;
+                    
+                    // Reset shadow
+                    if (img) img.style.filter = `drop-shadow(0 0 15px rgba(229,212,181,0.15))`;
+                    
+                    // Reset shine
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle at 50% 50%, rgba(229, 212, 181, 0) 0%, transparent 70%)`;
+                    }
+                });
+            });
+
+            // Schrodinger's Cat Logic
+            const catBox = document.getElementById('cat-box');
+            const catContent = document.getElementById('cat-content');
+            let wavefunctionCollapsed = false;
+
+            catBox.addEventListener('click', () => {
+                if(!wavefunctionCollapsed) {
+                    wavefunctionCollapsed = true;
+                    // Quantum physics joke: 50% chance the cat is alive or dead
+                    const isAlive = Math.random() > 0.5;
+                    catContent.innerText = isAlive ? '🐈' : '👻';
+                    
+                    catContent.style.opacity = '1';
+                    catContent.style.transform = 'translate(-50%, -15px)';
+                    
+                    // Reset the box after 3 seconds
+                    setTimeout(() => {
+                        wavefunctionCollapsed = false;
+                        catContent.style.opacity = '0';
+                        catContent.style.transform = 'translate(-50%, 0)';
+                    }, 3000); 
+                }
+            });
+
+            // Magnetic hover effect specifically for clickable elements
             hoverTargets.forEach(target => {
                 target.addEventListener('mouseenter', () => {
                     activeHoverTarget = target;
@@ -264,15 +364,15 @@
                 });
             });
 
-            // Main Animation Loop
             function animate() {
                 requestAnimationFrame(animate);
                 
-                // Update Cursor
+                // Update Cursor Positions (Lerping)
                 let targetX = mousePos.x;
                 let targetY = mousePos.y;
                 
-                if (activeHoverTarget) {
+                // Only snap to center if it's NOT a tilt logo
+                if (activeHoverTarget && !activeHoverTarget.classList.contains('tilt-logo-wrapper')) {
                     const rect = activeHoverTarget.getBoundingClientRect();
                     targetX = rect.left + rect.width / 2;
                     targetY = rect.top + rect.height / 2;
@@ -286,7 +386,7 @@
                 cursorDot.style.transform = `translate3d(${dotPos.x}px, ${dotPos.y}px, 0) translate(-50%, -50%)`;
                 cursorRing.style.transform = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
                 
-                // Draw Particles
+                // Draw Particles and Apply Physics
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = 'rgba(229, 212, 181, 0.5)';
                 
@@ -321,6 +421,7 @@
                     p.x += p.vx;
                     p.y += p.vy;
                     
+                    // Wrap around screen
                     if (p.x < 0) p.x = canvas.width;
                     if (p.x > canvas.width) p.x = 0;
                     if (p.y < 0) p.y = canvas.height;
@@ -331,7 +432,7 @@
                     ctx.fill();
                 }
 
-                // Draw Constellations
+                // Draw Constellation Lines
                 ctx.lineWidth = 0.5;
                 for (let i = 0; i < particles.length; i++) {
                     if (!particles[i].isConstellation) continue;
